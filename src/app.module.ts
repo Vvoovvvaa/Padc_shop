@@ -4,15 +4,16 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { JwtModule } from '@nestjs/jwt';
 
-import { AuthModule } from './resource/auth/auth.module';
+import { AuthModule } from './resource/auth/auth-module';
 import { ProductModule} from './resource/products/products.module';
-import { Products} from './resource/entyties/product_entyties';
-import { User } from './resource/entyties/user_entyties';
+import { Products} from './resource/entyties/product.entyti';
+import { User } from './resource/entyties/user.entyti';
 import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './resource/category/category.module';
-import { Category } from './resource/entyties/category_entyties';
+import { Category } from './resource/entyties/category.entyti';
 import { OrdersModule } from './resource/orders/orders.module';
-import { Orders } from './resource/entyties/order';
+import { Orders } from './resource/entyties/order.entity';
+import { SecretCode } from './resource/entyties/secret.entity';
 
 @Module({
   imports: [
@@ -33,7 +34,7 @@ import { Orders } from './resource/entyties/order';
       username: 'Vova',
       password: 'XoziMSovSHaurma',
       database: 'PADC_SHOP_DB',
-      entities: [User, Products,Category,Orders],
+      entities: [User, Products,Category,Orders,SecretCode],
       synchronize: true,
     }),
   ],

@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm";
-import { Base } from "./base";
-import { User } from "./user_entyties";
-import { Products } from "./product_entyties";
+import { Base } from "./base.entyti";
+import { User } from "./user.entyti";
+import { Products } from "./product.entyti";
 
 @Entity()
 export class Orders extends Base{

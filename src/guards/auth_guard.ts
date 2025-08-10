@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, UnauthorizedException } from "@nestjs/co
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Observable } from "rxjs";
-import { User } from "src/resource/entyties/user_entyties";
+import { User } from "src/resource/entyties/user.entyti";
 import { Repository } from "typeorm";
 
 

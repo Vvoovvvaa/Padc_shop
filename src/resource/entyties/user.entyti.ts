@@ -1,5 +1,5 @@
 import { Column, Entity } from "typeorm";
-import { Base } from "./base";
+import { Base } from "./base.entyti";
 
 @Entity()
 export class User extends Base{
@@ -17,4 +17,7 @@ export class User extends Base{
 
     @Column()
     password:string
+
+    @Column({default:false})
+    isVerify:boolean
 }

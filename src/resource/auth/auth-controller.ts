@@ -1,8 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { RegisterDto } from './DTO/register_dto';
-import { LoginDto } from './DTO/login_dto';
-import { ForgetDto } from './DTO/forget_password';
+import { AuthService } from './auth-service';
+import { RegisterDto } from './DTO/register-dto';
+import { LoginDto } from './DTO/login-dto';
+import { ForgetDto } from './DTO/forget-password';
+import { NewpasswordDto } from './DTO/newpassword-dto';
 
 @Controller('auth')
 export class AuthController {
@@ -24,4 +25,16 @@ export class AuthController {
     async forget(@Body() forgetDto:ForgetDto){
         return this.authservice.forgetPassword(forgetDto)
     }
+
+    @Post('check')
+    async check(@Body() body:{code:string,token:string}){
+        return await this.authservice.checkusers(body.code,body.token)
+    }
+
+    @Post('newpassword')
+    async new(@Body() newdto:NewpasswordDto){
+        return await this.authservice.newPassword(newdto)
+    }
+    
+
 }

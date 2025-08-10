@@ -1,7 +1,7 @@
-import { Base } from "./base";
+import { Base } from "./base.entyti";
 import { Column, Entity } from "typeorm";
 import { ManyToOne } from "typeorm";
-import { Category } from "./category_entyties";
+import { Category } from "./category.entyti";
 import { JoinColumn } from "typeorm";
 
 

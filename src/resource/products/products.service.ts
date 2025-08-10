@@ -1,9 +1,10 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Products } from '../entyties/product_entyties';
+import { Products } from '../entyties/product.entyti';
 import { Repository } from 'typeorm';
-import { ProductDto } from './DTO/products_dto';
-import { Category } from '../entyties/category_entyties';
+import { ProductDto } from './DTO/products-dto';
+import { Category } from '../entyties/category.entyti';
+import { IdDto } from 'src/dto/id-param.dto';
 
 @Injectable()
 export class ProductsService {
@@ -12,7 +13,7 @@ export class ProductsService {
         private readonly productsrepositor:Repository<Products>,
     ){ }
 
-    async addProducts(products:ProductDto):Promise<Products>{
+    async addProducts(products: ProductDto):Promise<Products>{
         const proverka  = await this.productsrepositor.findOne({where:{productName:products.productName}})
         if(proverka){
             throw new ConflictException("this product are exic,rename product")

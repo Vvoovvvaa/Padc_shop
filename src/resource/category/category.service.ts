@@ -1,9 +1,9 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Category } from '../entyties/category_entyties';
+import { Category } from '../entyties/category.entyti';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { CategoryDto } from './DTO/category_dto';
+import { CategoryDto } from './DTO/category-dto';
 
 @Injectable()
 export class CategoryService {
@@ -12,7 +12,7 @@ export class CategoryService {
         private readonly categorRepository:Repository<Category>,
     ) { }
 
-    async createCategory(category:CategoryDto):Promise<Category>{
+    async createCategory(category: CategoryDto):Promise<Category>{
       const proverka = await this.categorRepository.findOne({ where: {categoryName:category.categoryName}})
       if(proverka){
         throw new ConflictException("Category are exicitng,rename category")

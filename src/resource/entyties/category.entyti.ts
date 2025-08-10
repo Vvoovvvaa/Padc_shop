@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
-import { Base } from "./base";
+import { Base } from "./base.entyti";
 import { EnumCategory } from "../category/enums/category_enum";
-import { Products } from "./product_entyties";
+import { Products } from "./product.entyti";
 
 @Entity()
 export class Category extends Base{
