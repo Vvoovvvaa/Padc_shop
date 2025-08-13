@@ -1,6 +1,7 @@
 import { CanActivate, ExecutionContext, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
+import e from "express";
 import { Observable } from "rxjs";
 import { User } from "src/resource/entyties/user.entyti";
 import { Repository } from "typeorm";
@@ -17,8 +18,8 @@ export class AuthGuard implements CanActivate{
     async canActivate(context: ExecutionContext):Promise<boolean>{
         const request = context.switchToHttp().getRequest()
 
-        const {header} = request
-        const {authorization} = header
+        const {headers} = request
+        const {authorization} = headers
 
         if(!authorization){
             throw new UnauthorizedException("user are not authorizaten")
@@ -30,8 +31,9 @@ export class AuthGuard implements CanActivate{
 
             const user = this.jwtservice.decode(token)
             request.user = user
-        }catch{
+        }catch {
             throw new UnauthorizedException("User are not authorization")
+            
         }
         return true
     }

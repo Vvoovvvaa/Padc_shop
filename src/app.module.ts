@@ -6,14 +6,16 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { AuthModule } from './resource/auth/auth-module';
 import { ProductModule} from './resource/products/products.module';
-import { Products} from './resource/entyties/product.entyti';
+import { Product} from './resource/entyties/product.entyti';
 import { User } from './resource/entyties/user.entyti';
 import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './resource/category/category.module';
 import { Category } from './resource/entyties/category.entyti';
 import { OrdersModule } from './resource/orders/orders.module';
-import { Orders } from './resource/entyties/order.entity';
+import { Order } from './resource/entyties/order.entity';
 import { SecretCode } from './resource/entyties/secret.entity';
+import { OrderInfo } from './resource/entyties/order-info.entity';
+
 
 @Module({
   imports: [
@@ -34,9 +36,11 @@ import { SecretCode } from './resource/entyties/secret.entity';
       username: 'Vova',
       password: 'XoziMSovSHaurma',
       database: 'PADC_SHOP_DB',
-      entities: [User, Products,Category,Orders,SecretCode],
+      entities: [User, Product,Category,Order,SecretCode,OrderInfo],
       synchronize: true,
     }),
+    
+
   ],
   controllers: [AppController],
   providers: [AppService],

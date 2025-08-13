@@ -1,19 +1,19 @@
-import { IsInt, IsNotEmpty } from "class-validator";
+import { IsInt, IsArray, ValidateNested, Min } from 'class-validator';
+import { Type } from 'class-transformer';
 
-export class OrderDto{
-    @IsInt()
-    @IsNotEmpty()
-    productId:number
+export class OrderItemDto {
+  @IsInt()
+  productId: number;
 
-    @IsInt()
-    @IsNotEmpty()
-    userId:number
+  @IsInt()
+  @Min(1)
+  quantity: number;
+}
 
-    @IsInt()
-    @IsNotEmpty()
-    quantity:number
+export class OrderDto {
 
-    @IsInt()
-    @IsNotEmpty()
-    price:number
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => OrderItemDto)
+  items: OrderItemDto[];
 }
