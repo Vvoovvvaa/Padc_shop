@@ -1,9 +1,9 @@
-import { IsInt, IsNotEmpty, IsString, MinLength } from "class-validator"
+import { IsInt, IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator"
 
 export class ProductDto{
     @IsNotEmpty()
     @IsString()
-    readonly productName:string
+    readonly name:string
 
     @IsNotEmpty()
     @IsInt()
@@ -17,4 +17,7 @@ export class ProductDto{
     @IsNotEmpty()
     @IsInt()
     readonly price:number
+
+    @IsOptional()
+    photo:string
 }

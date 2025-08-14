@@ -17,7 +17,6 @@ export class CategoryService {
       if(proverka){
         throw new ConflictException("Category are exicitng,rename category")
       }
-
       const newCategory = this.categorRepository.create(category)
       const saveCategory = this.categorRepository.save(newCategory)
       return saveCategory;

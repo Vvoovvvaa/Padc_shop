@@ -1,20 +1,17 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth-service';
 import { RegisterDto } from './DTO/register-dto';
 import { LoginDto } from './DTO/login-dto';
 import { ForgetDto } from './DTO/forget-password';
 import { NewpasswordDto } from './DTO/newpassword-dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import * as fs from 'fs'
 
 @Controller('auth')
 export class AuthController {
     constructor(
         private readonly authservice:AuthService
     ){}
-
-    @Post('register')
-    async register(@Body() registerdto:RegisterDto){
-        return this.authservice.register(registerdto)
-    }
 
     @Post('login')
     async login(@Body() logindto:LoginDto){
@@ -35,6 +32,19 @@ export class AuthController {
     async new(@Body() newdto:NewpasswordDto){
         return await this.authservice.newPassword(newdto)
     }
+
+    @Post('register')
+    @UseInterceptors(FileInterceptor('photo'))
+    uploadFile(@UploadedFile() file: Express.Multer.File,@Body() body:RegisterDto){
+    if(!fs.existsSync(process.cwd() + '/uploads/user')){
+        fs.mkdirSync(process.cwd() + '/uploads/user' )
+    }
+    fs.writeFileSync('uploads/user/' + file.originalname,file.buffer)
+    body.photo = file.originalname
+    return this.authservice.register(body)
+    }
+    
+
     
 
 }

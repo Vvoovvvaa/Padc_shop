@@ -6,7 +6,7 @@ import { Exclude } from "class-transformer";
 @Entity('user')
 export class User extends Base {
   @Column({name:"first_name",nullable:true}) 
-  firsName: string;
+  firstName: string;
 
   @Column({ name: 'last_name' })
   lastName: string;
@@ -23,4 +23,8 @@ export class User extends Base {
 
   @OneToMany(() => Order, (order) => order.user)
   orders: Order[];
+
+  @Column({nullable:true})
+  photo:string
+
 }

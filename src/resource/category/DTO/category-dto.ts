@@ -1,5 +1,4 @@
-import { isNotEmpty, IsNotEmpty, IsString, MinLength } from "class-validator"
-import { EnumCategory } from "../enums/category_enum"
+import { isNotEmpty, IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator"
 
 export class CategoryDto{
     @IsNotEmpty()
@@ -9,9 +8,11 @@ export class CategoryDto{
     @IsString()
     @MinLength(10)
     description:string
-    
-    // @IsNotEmpty()
-    // parentId:number
 
-    type:EnumCategory
+    @IsOptional()
+    photo:string
+
+    
+
+    
 }

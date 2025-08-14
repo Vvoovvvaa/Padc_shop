@@ -6,23 +6,27 @@ import { JoinColumn } from "typeorm";
 import { ManyToMany } from "typeorm/browser";
 import { OneToMany } from "typeorm";
 import { OrderInfo } from "./order-info.entity";
+import { IsOptional } from "class-validator";
 
 @Entity('products')
 export class Product extends Base {
-  @Column({nullable:true})
+  @Column()
   name: string;
 
   @Column()
   description: string;
 
- @Column({ type: 'numeric', nullable: false, default: 0 })
- price: number;
+  @Column({ type: 'numeric',default: 0 })
+  price: number;
 
-  @ManyToOne(() => Category, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => Category, {onDelete: 'CASCADE' })
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
   @OneToMany(() => OrderInfo, (info) => info.product)
   orderInfos: OrderInfo[];
+
+  @Column({nullable:true})
+  photo:string
 }
 

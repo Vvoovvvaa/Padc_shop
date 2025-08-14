@@ -1,15 +1,11 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { Base } from "./base.entyti";
-import { EnumCategory } from "../category/enums/category_enum";
 import { Product } from "./product.entyti";
 
 @Entity()
 export class Category extends Base{
     @Column({name:"category_name"})
     categoryName:string
-
-    @Column({type:"enum",enum:EnumCategory})
-    type:EnumCategory
 
     @Column()
     description:string
@@ -22,6 +18,9 @@ export class Category extends Base{
 
     @OneToMany(() => Product,product =>product.category)
     product:Product[]
+
+    @Column({nullable:true})
+    photo:string
 
 
 }

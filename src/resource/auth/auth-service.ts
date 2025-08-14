@@ -38,20 +38,21 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(register.password, 12);
 
     const newUser = this.userRepository.create({
-      ...register,password: hashedPassword,
+      ...register,password: hashedPassword
     });
 
-    try {
+
       const savedUser = await this.userRepository.save(newUser);
       const payload = {
         sub: savedUser.id,
         email: savedUser.email,
+        photo: savedUser.photo
       };
-      return { access_token: this.jwtservice.sign(payload) };
-    } catch (error) {
-      console.log(error);
-      throw new InternalServerErrorException('Registration failed');
-    }
+
+      return { access_token: this.jwtservice.sign(payload,{
+        secret:process.env.JWT_SECRET
+      }) };
+
   }
 
  async login(login: LoginDto): Promise<{ access_token: string }> {

@@ -15,7 +15,8 @@ import { OrdersModule } from './resource/orders/orders.module';
 import { Order } from './resource/entyties/order.entity';
 import { SecretCode } from './resource/entyties/secret.entity';
 import { OrderInfo } from './resource/entyties/order-info.entity';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -28,6 +29,11 @@ import { OrderInfo } from './resource/entyties/order-info.entity';
     ConfigModule.forRoot({
       isGlobal:true
     }),
+
+    ServeStaticModule.forRoot({
+          rootPath: join (__dirname,'..','uploads/'),
+          serveRoot: '/public/',
+        }),
     
     TypeOrmModule.forRoot({
       type: 'postgres',

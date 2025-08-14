@@ -14,7 +14,7 @@ export class ProductsService {
     ){ }
 
     async addProducts(products: ProductDto):Promise<Product>{
-        const proverka  = await this.productsrepositor.findOne({where:{name:products.productName}})
+        const proverka  = await this.productsrepositor.findOne({where:{name:products.name}})
         if(proverka){
             throw new ConflictException("this product are exic,rename product")
         }
