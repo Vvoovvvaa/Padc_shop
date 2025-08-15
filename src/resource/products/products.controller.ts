@@ -5,6 +5,7 @@ import { CategoryDto } from '../category/DTO/category-dto';
 import { IdDto } from 'src/dto/id-param.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as fs from 'fs'
+import { Product } from '../entyties/product.entyti';
 
 @Controller('products')
 export class ProductsController {
@@ -23,8 +24,9 @@ export class ProductsController {
       if(!fs.existsSync(process.cwd() + '/uploads/products')){
         fs.mkdirSync(process.cwd() + '/uploads/products' )
       }
-      fs.writeFileSync('uploads/products/' + file.originalname,file.buffer)
-      body.photo = file.originalname
-      return this.productservice.addProducts(body)
+      const photoPath = `uploads/products/${file.originalname}`
+      fs.writeFileSync(photoPath,file.buffer)
+      const withphoro = {...body,photo:photoPath}
+      return this.productservice.addProducts(withphoro)
 }
 }

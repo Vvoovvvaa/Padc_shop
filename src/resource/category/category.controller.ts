@@ -23,8 +23,9 @@ export class CategoryController {
       if(!fs.existsSync(process.cwd() + '/uploads/category')){
         fs.mkdirSync(process.cwd() + '/uploads/category' )
       }
-      fs.writeFileSync('uploads/category/' + file.originalname,file.buffer)
-      body.photo = file.originalname
-      return this.categoryService.createCategory(body)
+      const photoPath = `uploads/category/${file.originalname}`
+      fs.writeFileSync(photoPath,file.buffer)
+      const withphoro = {...body,photo:photoPath}
+      return this.categoryService.createCategory(withphoro)
 }
 }

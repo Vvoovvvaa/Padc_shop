@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { ProductDto } from './DTO/products-dto';
 import { Category } from '../entyties/category.entyti';
 import { IdDto } from 'src/dto/id-param.dto';
+import { File } from 'buffer';
 
 @Injectable()
 export class ProductsService {

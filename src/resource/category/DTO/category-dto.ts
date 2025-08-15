@@ -9,8 +9,8 @@ export class CategoryDto{
     @MinLength(10)
     description:string
 
-    @IsOptional()
-    photo:string
+    // @IsOptional()
+    // photo:string
 
     
 

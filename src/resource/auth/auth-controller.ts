@@ -39,9 +39,10 @@ export class AuthController {
     if(!fs.existsSync(process.cwd() + '/uploads/user')){
         fs.mkdirSync(process.cwd() + '/uploads/user' )
     }
-    fs.writeFileSync('uploads/user/' + file.originalname,file.buffer)
-    body.photo = file.originalname
-    return this.authservice.register(body)
+    const photoPath = `uploads/user/${file.originalname}`
+    fs.writeFileSync(photoPath,file.buffer)
+    const withphoro = {...body,photo:photoPath}
+    return this.authservice.register(withphoro)
     }
     
 

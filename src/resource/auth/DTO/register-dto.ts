@@ -27,8 +27,8 @@ export class RegisterDto{
     @MinLength(7)
     readonly password:string
 
-    @IsOptional()
-    photo?:string
+    // @IsOptional()
+    // photo?:string
  
     
 }

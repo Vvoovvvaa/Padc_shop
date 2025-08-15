@@ -18,6 +18,6 @@ export class ProductDto{
     @IsInt()
     readonly price:number
 
-    @IsOptional()
-    photo:string
+//     @IsOptional()
+//     photo:string
 }
