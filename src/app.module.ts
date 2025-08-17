@@ -17,6 +17,7 @@ import { SecretCode } from './resource/entyties/secret.entity';
 import { OrderInfo } from './resource/entyties/order-info.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ProductPhotos } from './resource/entyties/photos-entity';
 
 @Module({
   imports: [
@@ -37,12 +38,12 @@ import { join } from 'path';
     
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5555,
-      username: 'Vova',
-      password: 'XoziMSovSHaurma',
-      database: 'PADC_SHOP_DB',
-      entities: [User, Product,Category,Order,SecretCode,OrderInfo],
+      host: process.env.DATABASE_HOST,
+      port: +(process.env.DATABASE_PORT as string),
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
+      entities: [User, Product,Category,Order,SecretCode,OrderInfo,ProductPhotos],
       synchronize: true,
     }),
     

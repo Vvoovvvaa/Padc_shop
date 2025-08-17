@@ -7,6 +7,7 @@ import { ManyToMany } from "typeorm/browser";
 import { OneToMany } from "typeorm";
 import { OrderInfo } from "./order-info.entity";
 import { IsOptional } from "class-validator";
+import { ProductPhotos } from "./photos-entity";
 
 @Entity('products')
 export class Product extends Base {
@@ -26,7 +27,8 @@ export class Product extends Base {
   @OneToMany(() => OrderInfo, (info) => info.product)
   orderInfos: OrderInfo[];
 
-  @Column({nullable:true})
-  photo:string
+  @OneToMany(() => ProductPhotos,photos => photos.product)
+  photos:ProductPhotos[]
+    static id: number
 }
 

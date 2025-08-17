@@ -1,4 +1,4 @@
-import { isNotEmpty, IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator"
+import { isNotEmpty, IsNotEmpty, IsNumber, IsOptional, IsString, MinLength } from "class-validator"
 
 export class CategoryDto{
     @IsNotEmpty()
@@ -9,8 +9,11 @@ export class CategoryDto{
     @MinLength(10)
     description:string
 
-    // @IsOptional()
-    // photo:string
+    @IsOptional()
+    @IsNumber()
+    parentId:number
+
+
 
     
 

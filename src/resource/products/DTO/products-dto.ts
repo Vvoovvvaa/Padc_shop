@@ -18,6 +18,4 @@ export class ProductDto{
     @IsInt()
     readonly price:number
 
-//     @IsOptional()
-//     photo:string
 }
