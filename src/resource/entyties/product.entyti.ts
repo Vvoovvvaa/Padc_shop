@@ -29,6 +29,5 @@ export class Product extends Base {
 
   @OneToMany(() => ProductPhotos,photos => photos.product)
   photos:ProductPhotos[]
-    static id: number
 }
 

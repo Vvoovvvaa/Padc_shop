@@ -66,8 +66,6 @@ export class ProductsService {
 
     await this.photosRepository.save(photoEntities);
 
-    product.photos = photoEntities;
-
     return await this.productsRepository.findOne({
       where: { id: product.id },
       relations: ['photos', 'category'],
